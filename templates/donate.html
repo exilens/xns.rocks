@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Donate - XNS: eXile Name System</title>
+  <link rel="icon" href="/static/xns-logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <main class="donate">
+    <header class="donate-header">
+      <a href="/" aria-label="XNS homepage">
+        <img src="/static/xns-logo.svg" alt="eXile Name System" width="136" height="102">
+      </a>
+      <h1>Donate</h1>
+    </header>
+
+    <p class="donate-message">
+      XNS is made to liberate people from names that can be censored, seized or manipulated by an authority. By supporting XNS, you are helping build a freer internet, and your contribution is sincerely appreciated.
+    </p>
+
+    <section class="donate-section">
+      <h2>Address</h2>
+      <code class="donate-key">{{.Address}}</code>
+    </section>
+
+    <section class="donate-section">
+      <h2>Incoming transactions</h2>
+      <div class="donation-table-wrap">
+        <table class="donation-table">
+          <thead>
+            <tr>
+              <th scope="col">Time</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Height</th>
+              <th scope="col">Confirmations</th>
+              <th scope="col">Transaction</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{range .Donations}}
+            <tr>
+              <td>{{.Time}}</td>
+              <td>{{.Amount}}</td>
+              <td>{{.Height}}</td>
+              <td>{{.Confirmations}}</td>
+              <td><code>{{.TxID}}</code></td>
+            </tr>
+            {{else}}
+            <tr>
+              <td class="donation-empty" colspan="5">
+                {{if .Ready}}No incoming transactions.{{else if .Error}}Wallet unavailable.{{else}}Synchronizing wallet.{{end}}
+              </td>
+            </tr>
+            {{end}}
+          </tbody>
+        </table>
+      </div>
+      {{if .Error}}<p class="donation-status">The last refresh failed. Previously loaded transactions remain visible.</p>{{end}}
+    </section>
+
+    <section class="donate-section">
+      <h2>Secret view key</h2>
+      <code class="donate-key">{{.ViewKey}}</code>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{.Page.Title}} - XNS Documentation</title>
+  <link rel="icon" href="/static/xns-logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="docs">
+    <aside class="docs-sidebar">
+      <a class="docs-logo" href="/" aria-label="XNS homepage">
+        <img src="/static/xns-logo.svg" alt="eXile Name System" width="136" height="102">
+      </a>
+      <nav class="docs-links" aria-label="Project links">
+        <a href="https://github.com/exilens/xns" aria-label="Source code" title="Source code">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M12 .7a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.2.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.6.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0C16.8 4.7 17.9 5 17.9 5c.6 1.5.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.8 5.5-5.5 5.8.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6A11.5 11.5 0 0 0 12 .7Z"/>
+          </svg>
+        </a>
+        <a href="/donate" aria-label="Donate" title="Donate">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/>
+          </svg>
+        </a>
+      </nav>
+      <nav class="docs-navigation" aria-label="Documentation">
+        <a class="docs-main{{if eq .Page.URL "/docs"}} active{{end}}" href="/docs">Documentation</a>
+        {{range .Categories}}
+        <details open>
+          <summary>{{.Title}}</summary>
+          <div class="docs-topics">
+            {{range .Topics}}
+            <a class="{{if eq $.Page.URL .URL}}active{{end}}" href="{{.URL}}">{{.Title}}</a>
+            {{end}}
+          </div>
+        </details>
+        {{end}}
+      </nav>
+    </aside>
+    <main class="docs-content">
+      <article class="markdown">
+        {{.Page.Content}}
+      </article>
+    </main>
+  </div>
+</body>
+</html>

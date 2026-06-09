@@ -1,0 +1,17 @@
+# Why XNS?
+
+To have an identity on the Internet, you have to pay and do require permission from way too many institutions.
+Even if you host all of the infrastructure of your services yourself, the DNS is ran by organizations that wants your money, and will terminate your name if they don't like the way you are.
+The worst part is not that they have full control over accessibility to your service, it is that they also hold the keys to your identity. To you.
+With cryptography, trusting institutions is a thing of past. If you sign something with your cryptographic identity, people will immediately know that's you. They can even use your identity to access you, Tor and I2P are great examples of that. The demand for centralized authorities in Internet is now merely a spook.
+
+But there is a missing part. Cryptographic identities, unlike a simple (but unfree) name->IP registry, are neither memorable nor practical for everyday use.
+There were tries to fix this, but failed for same reason.
+
+**Namecoin** and **Handshake** have tried to invent a whole new blockchain, even if technically pure, have lost to adoption problems.
+**ENS** have not tried to be a replacement to the traditional DNS system, but a name system for Ethereum addresses. And it have succeeded in its own way.
+
+This proves us that, inventing the wheel from scratch for one particular task results in failure, while using a car for multiple tasks results in success.
+
+What is the XNS stance here? XNS is built on Monero, one of the few cryptocurrencies with a real use case, and certainly one of the most decentralized in terms of operation and development.
+But how? Isn't that technically impossible, or at least rough? No, see [How does it work?](/docs/introduction/how-does-it-work) to learn all on how XNS works.
