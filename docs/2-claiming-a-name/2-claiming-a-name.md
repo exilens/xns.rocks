@@ -87,6 +87,7 @@ A mined and active name returns its owner key, expiration height, remaining bloc
   "owner_key": "5866666666666666666666666666666666666666666666666666666666666666",
   "expiration_height": 4000000,
   "remaining_blocks": 200000,
+  "finalized": true,
   "source_txids": [
     "<claim transaction id>"
   ]

@@ -23,6 +23,7 @@ An active name returns `200 OK`:
   "owner_key": "5866666666666666666666666666666666666666666666666666666666666666",
   "expiration_height": 4000000,
   "remaining_blocks": 200000,
+  "finalized": true,
   "source_txids": [
     "<initial claim>",
     "<renewal>"
@@ -35,6 +36,8 @@ An active name returns `200 OK`:
 `expiration_height` is the first block height at which the current ownership is no longer active.
 
 `remaining_blocks` is calculated against the wallet height used for the current indeXer state. With Monero's target block time of two minutes, applications may estimate wall-clock time as `remaining_blocks * 2 minutes`, but the protocol itself uses heights rather than clocks.
+
+`finalized` is `true` when the latest transaction contributing to the current entry has at least ten confirmations. A recent claim or renewal returns `false` until that transaction reaches the indeXer's durable confirmation boundary.
 
 `source_txids` contains the initial claim and every same-owner renewal belonging to the current active ownership period.
 
