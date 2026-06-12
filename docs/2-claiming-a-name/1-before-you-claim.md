@@ -62,7 +62,7 @@ alice-
 alice.xns
 ```
 
-There are deliberately no dots in the base registry. XNS assigns names, not hierarchical domains. A future naming layer may define subdomains without changing the ownership of the base name.
+There are deliberately no dots in the base registry. XNS assigns base names, not separate hierarchical records. Applications may delegate every hostname beneath a base name to its owner; XNS Resolver does this for Tor while the onion service's virtual-host configuration decides which subdomains are actually served.
 
 ## Duration and cost
 
