@@ -62,4 +62,4 @@ Back up the PEM and the onion-service directory privately before claiming the na
 
 Losing all private material does not remove the XNS claim. It leaves the active name pointing to an identity that nobody can operate, and XNS has no owner replacement operation.
 
-Once the service identity is settled, continue with [claiming the name](/docs/xns-and-tor/claiming-the-name).
+Once the service identity is settled, continue with [serving XNS hostnames](/docs/xns-and-tor/serving-xns-hostnames).

@@ -1,4 +1,4 @@
-# XNS on the web
+# XNS on Tor
 
 The base XNS protocol assigns a name to an Ed25519 public key. It does not decide whether that key identifies a website, a signing identity, a messaging account or something else. This is deliberate: the registry establishes ownership, while applications decide what ownership means in their own field.
 

@@ -26,27 +26,22 @@ cd xns-resolver
 go build -o xns-resolver ./cmd/xns-resolver
 ```
 
-Run it with an indeXer:
+Run it in Tor mode:
 
 ```sh
 sudo ./xns-resolver \
-  --indexer <xns-indexer-url>
-```
-
-The indeXer is required. XNS Resolver does not silently choose one.
-
-By default it expects Tor SOCKS5 on:
-
-```text
-socks5://127.0.0.1:9050
-```
-
-Use another listener explicitly:
-
-```sh
-sudo ./xns-resolver \
+  --network tor \
   --indexer <xns-indexer-url> \
-  --tor-proxy socks5://127.0.0.1:9150
+  --tor-socks socks5://127.0.0.1:9050
+```
+
+The network, indeXer and Tor SOCKS URL are required. XNS Resolver does not silently choose any of them. To use another listener:
+
+```sh
+sudo ./xns-resolver \
+  --network tor \
+  --indexer <xns-indexer-url> \
+  --tor-socks socks5://127.0.0.1:9150
 ```
 
 The remaining options control the local virtual network:
