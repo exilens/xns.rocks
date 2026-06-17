@@ -8,7 +8,7 @@ Test the complete path:
 curl http://example.xns/
 ```
 
-No I2P proxy setting is needed in `curl`. The application receives a synthetic address from XNS Resolver and opens an ordinary TCP connection. The resolver carries it through SAM to the extended destination derived from the XNS owner key.
+No I2P proxy setting is needed in `curl`. The application receives a synthetic address from XNS Resolver and opens an ordinary TCP connection. The resolver carries it through the configured I2P SOCKS listener to the extended destination derived from the XNS owner key.
 
 Subdomains follow the same route:
 
@@ -51,10 +51,10 @@ On the publisher, compare this result with:
 
 Then open the i2pd console, select the service under **Local Destinations**, and compare it with **Encrypted B33 address**. Do not compare it with the ordinary 52-character address on the Server Tunnels page.
 
-Check the SAM listener on the visitor:
+Check the I2P SOCKS listener on the visitor:
 
 ```sh
-ss -ltn | grep ':7656'
+ss -ltn | grep ':4447'
 ```
 
 Check local XNS resolution:
@@ -71,7 +71,7 @@ Finally:
 curl -v http://example.xns/
 ```
 
-If name resolution succeeds but the connection fails, check the SAM listener, encrypted LeaseSet2 publication and i2pd tunnel state. If the connection reaches the service but returns `404`, the reverse proxy probably does not accept `Host: example.xns`.
+If name resolution succeeds but the connection fails, check the I2P SOCKS listener, encrypted LeaseSet2 publication and i2pd tunnel state. If the connection reaches the service but returns `404`, the reverse proxy probably does not accept `Host: example.xns`.
 
 On the publisher, verify the local backend separately:
 

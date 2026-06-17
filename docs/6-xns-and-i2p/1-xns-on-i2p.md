@@ -55,11 +55,11 @@ The publisher:
 
 The visitor:
 
-1. runs an I2P router with SAM enabled
+1. runs an I2P router with a SOCKS5 listener
 2. runs XNS Resolver in I2P mode with a chosen indeXer
 3. opens `http://example.xns` in an ordinary application
 
-XNS Resolver derives the extended address, asks the I2P router to open a stream to it, and leaves the application protocol unchanged.
+XNS Resolver derives the extended address, asks the I2P router's SOCKS listener to open a stream to it, and leaves the application protocol unchanged.
 
 ## Subdomains
 

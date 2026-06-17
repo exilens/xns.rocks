@@ -1,11 +1,11 @@
 # Running XNS Resolver
 
-XNS Resolver makes `.xns` names available to ordinary Linux applications. In I2P mode it asks an indeXer for the owner key, derives the extended address, and opens application TCP streams through the router's SAM interface.
+XNS Resolver makes `.xns` names available to ordinary Linux applications. In I2P mode it asks an indeXer for the owner key, derives the extended address, and opens application TCP streams through the router's SOCKS5 listener.
 
 The route is:
 
 ```text
-.xns hostname -> rightmost XNS name -> owner key -> extended I2P address -> SAM
+.xns hostname -> rightmost XNS name -> owner key -> extended I2P address -> I2P SOCKS
 ```
 
 ## Requirements
@@ -14,7 +14,7 @@ The current implementation requires:
 
 - Linux
 - `systemd-resolved`
-- an I2P router with a SAM TCP listener
+- an I2P router with a SOCKS5 listener
 - root privileges for TUN and route setup
 - an XNS indeXer URL chosen by the user
 
@@ -32,17 +32,17 @@ Run it in I2P mode:
 sudo ./xns-resolver \
   --network i2p \
   --indexer <xns-indexer-url> \
-  --i2p-sam 127.0.0.1:7656
+  --i2p-socks <i2p-socks-url>
 ```
 
-The network, indeXer and SAM address are all required. XNS Resolver does not silently choose any of them.
+The network, indeXer and I2P SOCKS URL are all required. XNS Resolver does not silently choose any of them.
 
-Port `7656` is the conventional SAM TCP port. i2pd normally enables SAM on `127.0.0.1:7656`. The Java I2P router uses the same conventional port but may require SAM to be enabled explicitly. Keep SAM on loopback unless there is a specific protected deployment that requires otherwise.
+Port `4447` is the conventional I2P SOCKS port. Use it if that is where your router exposes SOCKS, otherwise pass the listener you actually configured.
 
 Check the listener:
 
 ```sh
-ss -ltn | grep ':7656'
+ss -ltn | grep ':4447'
 ```
 
 ## What it changes
@@ -55,11 +55,11 @@ For an active name, the resolver:
 2. validates the returned name, owner key and source transactions
 3. derives the extended Ed25519 I2P address
 4. returns a synthetic IPv4 address to the application
-5. maps TCP connections through a transient SAM STREAM session
+5. maps TCP connections through the configured I2P SOCKS5 listener
 
 Other DNS names remain on the system's normal resolver path.
 
-Stop the process with `Ctrl+C` or `SIGTERM`. It closes the SAM session, reverts the `systemd-resolved` route, removes the virtual interface and discards all cached mappings.
+Stop the process with `Ctrl+C` or `SIGTERM`. It reverts the `systemd-resolved` route, removes the virtual interface and discards all cached mappings.
 
 ## Local network options
 
