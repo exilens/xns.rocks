@@ -67,6 +67,18 @@ curl -v http://example.xns/
 
 If DNS succeeds but the connection fails, check that Tor SOCKS is running, the onion service is published and the resolver is using the intended SOCKS port. If the connection succeeds but returns `404`, the service probably does not accept `Host: example.xns`. If it returns the wrong site, inspect the reverse proxy's host matching and default server.
 
+## DNS records
+
+XNS Resolver owns address records for `.xns` names. An `A` query returns the synthetic address used by the resolver's virtual route. An `AAAA` query returns no address, so applications continue with IPv4 through the resolver.
+
+Other record types are forwarded to the owner service over TCP port `53`. This lets the service publish records such as TXT while keeping routing under XNS Resolver:
+
+```sh
+dig TXT openalias.example.xns
+```
+
+The owner must run a DNS server on the same onion service if it wants these records to exist. If that server is missing or unreachable, non-address lookups fail instead of pretending the record does not exist.
+
 Direct onion access is a useful comparison:
 
 ```sh

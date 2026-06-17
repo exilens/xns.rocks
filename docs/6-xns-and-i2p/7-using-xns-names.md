@@ -73,6 +73,18 @@ curl -v http://example.xns/
 
 If name resolution succeeds but the connection fails, check the I2P SOCKS listener, encrypted LeaseSet2 publication and i2pd tunnel state. If the connection reaches the service but returns `404`, the reverse proxy probably does not accept `Host: example.xns`.
 
+## DNS records
+
+XNS Resolver owns address records for `.xns` names. An `A` query returns the synthetic address used by the resolver's virtual route. An `AAAA` query returns no address, so applications continue with IPv4 through the resolver.
+
+Other record types are forwarded to the owner service over TCP port `53`. This lets the service publish records such as TXT while keeping routing under XNS Resolver:
+
+```sh
+dig TXT openalias.example.xns
+```
+
+The owner must run a DNS server on the same I2P destination if it wants these records to exist. If that server is missing or unreachable, non-address lookups fail instead of pretending the record does not exist.
+
 On the publisher, verify the local backend separately:
 
 ```sh
