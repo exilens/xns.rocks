@@ -42,7 +42,7 @@ Use a different directory for every network. If a data directory contains a data
 
 The indeXer starts its own `monero-wallet-rpc` on a free localhost port. The port is chosen at runtime and remains private to the process.
 
-On first use, it derives the protocol address from the protocol view secret, invalid spend public key and selected network prefix, then creates a view-only wallet at:
+On first use, it derives the protocol address from the protocol view secret, hash-derived spend public key and selected network prefix, then creates a view-only wallet at:
 
 ```text
 <data-dir>/wallet/xns_protocol_view

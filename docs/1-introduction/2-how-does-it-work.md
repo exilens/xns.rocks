@@ -5,8 +5,9 @@ It uses Monero as its only source of truth.
 
 At the center of XNS is a protocol constant Monero wallet.
 It has a valid view keypair, so every payment sent to it can be found and read.
-But its public spend key is the order-2 Edwards point `(0, -1)`, which is outside the prime-order subgroup used by Monero spend keys.
-There is no valid private spend key behind it.
+But its public spend key is not generated from a spend secret.
+It is derived by applying Monero's hash-to-EC map to the fixed string `XNS`.
+There is no known private spend scalar behind it.
 Nothing sent to this wallet can ever be spent.
 
 In other words, it is a view-only burn wallet.

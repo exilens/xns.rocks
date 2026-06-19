@@ -15,7 +15,7 @@ A verifier needs:
 
 - a Monero node
 - the protocol view secret
-- the invalid protocol spend public key
+- the protocol spend-key derivation input
 - the network prefix and restore height
 - the XNS payload and registry rules
 

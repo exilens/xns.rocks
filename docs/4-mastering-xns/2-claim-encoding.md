@@ -49,7 +49,7 @@ No case folding, Unicode normalization or dot hierarchy is performed. Invalid by
 
 The owner field is a canonical 32-byte compressed Ed25519 point. It must decode onto the curve, must not be the identity, and must belong to the prime-order subgroup.
 
-The subgroup check prevents small-order or mixed-order points from becoming owner identities. In particular, the order-two point used as the protocol wallet spend public key is not accepted as an owner key.
+The subgroup check prevents small-order or mixed-order points from becoming owner identities. Owner keys are ordinary prime-order Ed25519 public keys. The protocol wallet's spend key is also a prime-order point, but it is hash-derived rather than generated from a known owner secret.
 
 The protocol stores the compressed point exactly as 64 lowercase hexadecimal characters in indeXer responses. How an application uses the corresponding private key for authentication or resolution is above the base registry; XNS establishes the name-to-key ownership.
 
