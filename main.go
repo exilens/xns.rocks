@@ -1,4 +1,4 @@
-package main
+package xnsrocks
 
 import (
 	"bytes"
@@ -29,7 +29,7 @@ import (
 //go:embed templates static docs
 var files embed.FS
 
-func main() {
+func Main() {
 	if err := run(); err != nil {
 		log.Fatal(err)
 	}

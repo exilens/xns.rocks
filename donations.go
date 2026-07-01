@@ -1,4 +1,4 @@
-package main
+package xnsrocks
 
 import (
 	"bytes"

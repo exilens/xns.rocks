@@ -1,4 +1,4 @@
-module xns.rocks
+module github.com/exilens/xns.rocks
 
 go 1.26
 
