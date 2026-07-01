@@ -40,12 +40,15 @@ type = server
 host = 127.0.0.1
 port = 8080
 keys = xns/private.dat
+signaturetype = 11
 i2cp.leaseSetType = 5
 ```
 
 The `keys` value is relative to the i2pd data directory. With the standard service layout, `keys = xns/private.dat` refers to `/var/lib/i2pd/xns/private.dat`.
 
 Do not write the absolute path there. i2pd passes the value through its data-directory path handling, so an absolute-looking value may be prefixed with `/var/lib/i2pd` and fail to load. If i2pd cannot open the requested file, it may create or use another destination instead of the XNS identity you intended.
+
+`signaturetype = 11` matches the RedDSA destination written by `xns-i2p`.
 
 `type = server` creates a raw TCP tunnel. This is appropriate for XNS because i2pd passes the HTTP request through unchanged, including:
 

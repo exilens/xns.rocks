@@ -42,6 +42,7 @@ type = server
 host = 127.0.0.1
 port = 8033
 keys = xns/private.dat
+signaturetype = 11
 i2cp.leaseSetType = 5
 ```
 

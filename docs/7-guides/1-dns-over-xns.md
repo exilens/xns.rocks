@@ -35,6 +35,7 @@ host = 127.0.0.1
 inport = 53
 port = 9053
 keys = xns/private.dat
+signaturetype = 11
 i2cp.leaseSetType = 5
 ```
 

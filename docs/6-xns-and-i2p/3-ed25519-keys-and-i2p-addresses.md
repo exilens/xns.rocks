@@ -2,23 +2,27 @@
 
 An I2P Destination contains a signing key, an encryption key and identity data. The XNS owner field contains only a raw compressed Ed25519 public key. A deterministic construction is therefore needed to create the rest of the destination from one portable secret.
 
-For a new service, `xns-i2p` begins with the 32-byte Ed25519 seed stored in an OpenSSL PKCS#8 file. The seed is kept unchanged as the i2pd Ed25519 signing secret.
+For a new service, `xns-i2p` begins with the 32-byte Ed25519 seed stored in an OpenSSL PKCS#8 file. The seed is expanded with SHA-512 and clamped into the RedDSA private scalar used by i2pd signing type `11`.
 
-The destination also needs an X25519 encryption key. `xns-i2p` derives it separately:
+The destination also needs an X25519 encryption key. `xns-i2p` derives it separately from the same signing scalar:
 
 ```text
-encryption_key = HMAC-SHA256(ed25519_seed, "XNS" || 0x00)
-identity_pad   = HMAC-SHA256(ed25519_seed, "XNS" || 0x01)
+expanded       = SHA-512(ed25519_seed)
+signing_scalar = clamp(expanded[0:32])
+encryption_key = HMAC-SHA256(signing_scalar, "XNS" || 0x00)
+identity_pad   = HMAC-SHA256(signing_scalar, "XNS" || 0x01)
 ```
 
-The selector bytes keep the encryption key and padding distinct. The Ed25519 signing seed is not replaced, converted or reused as the X25519 secret.
+The selector bytes keep the encryption key and padding distinct. The signing scalar is not converted or reused as the X25519 secret.
 
 The result is one deterministic native i2pd file:
 
 ```text
 Ed25519 seed
     |
-    +-> Ed25519 signing keypair
+RedDSA signing scalar
+    |
+    +-> Ed25519 public key
     +-> X25519 encryption keypair
     +-> deterministic identity padding
     |
@@ -35,7 +39,7 @@ For the XNS-compatible Ed25519 destination, the extended address encodes:
 flags1 || signing_type1 || blinded_type1 || public_key32
 ```
 
-The flags are zero, the unblinded signing type is `7` for Ed25519, and the blinded signing type is `11` for RedDSA-Ed25519. A CRC32 checksum of the public key is mixed into the first three bytes before the 35-byte result is encoded as lowercase base32.
+The flags are zero, the unblinded signing type is `11` for RedDSA-Ed25519, and the blinded signing type is also `11`. A CRC32 checksum of the public key is mixed into the first three bytes before the 35-byte result is encoded as lowercase base32.
 
 This produces a 56-character label followed by `.b32.i2p`.
 

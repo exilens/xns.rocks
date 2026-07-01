@@ -44,6 +44,7 @@ host = 127.0.0.1
 inport = 25
 port = 9025
 keys = xns/private.dat
+signaturetype = 11
 i2cp.leaseSetType = 5
 
 [example_submission]
@@ -52,6 +53,7 @@ host = 127.0.0.1
 inport = 587
 port = 9587
 keys = xns/private.dat
+signaturetype = 11
 i2cp.leaseSetType = 5
 
 [example_submission_tls]
@@ -60,6 +62,7 @@ host = 127.0.0.1
 inport = 465
 port = 9465
 keys = xns/private.dat
+signaturetype = 11
 i2cp.leaseSetType = 5
 
 [example_imap]
@@ -68,6 +71,7 @@ host = 127.0.0.1
 inport = 993
 port = 9993
 keys = xns/private.dat
+signaturetype = 11
 i2cp.leaseSetType = 5
 ```
 

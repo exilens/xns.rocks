@@ -31,14 +31,14 @@ xns-i2p inspect DIRECTORY
 It prints the extended address:
 
 ```text
-gngj6ifbnm3yo6pg63gyy7ljjyrfo6q2x4bym6u3romqvc2xedv6wui5.b32.i2p
+gnaj6ifbnm3yo6pg63gyy7ljjyrfo6q2x4bym6u3romqvc2xedv6wui5.b32.i2p
 ```
 
 `owner` performs the reverse operation:
 
 ```sh
 ./xns-i2p owner \
-  gngj6ifbnm3yo6pg63gyy7ljjyrfo6q2x4bym6u3romqvc2xedv6wui5.b32.i2p
+  gnaj6ifbnm3yo6pg63gyy7ljjyrfo6q2x4bym6u3romqvc2xedv6wui5.b32.i2p
 ```
 
 It validates the base32 encoding, checksum, signing types and Ed25519 point before printing:
@@ -82,7 +82,7 @@ i2p_address: <extended I2P address>
 ./xns-i2p inspect /path/to/service-directory
 ```
 
-It reads the Ed25519 seed from `private.dat`, derives the signing public key, X25519 encryption key, identity padding and extended address again, and rejects the file if any component differs. It also checks `hostname` when present.
+It reads the RedDSA private scalar from `private.dat`, derives the signing public key, X25519 encryption key, identity padding and extended address again, and rejects the file if any component differs. It also checks `hostname` when present.
 
 `xns-i2p` never prints private key material. Its output contains only the public owner key and extended address.
 

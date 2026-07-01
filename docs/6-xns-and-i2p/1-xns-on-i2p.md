@@ -38,7 +38,7 @@ Open that destination under **Local Destinations** and i2pd also shows:
 
 ```text
 Encrypted B33 address:
-gngj6ifbnm3yo6pg63gyy7ljjyrfo6q2x4bym6u3romqvc2xedv6wui5.b32.i2p
+gnaj6ifbnm3yo6pg63gyy7ljjyrfo6q2x4bym6u3romqvc2xedv6wui5.b32.i2p
 ```
 
 The label before `.b32.i2p` is 56 characters. This is the XNS-compatible address. Both addresses can refer to the same service, but only the extended address contains enough information to recover the XNS owner key.
