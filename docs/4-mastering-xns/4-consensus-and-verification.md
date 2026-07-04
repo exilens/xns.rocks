@@ -29,7 +29,7 @@ A dishonest indeXer can return false JSON, omit a name, report an old height or 
 
 It cannot alter the Monero transaction, create a valid owner signature, make another honest indeXer reach the same false result or erase the source transaction from nodes following the canonical chain.
 
-Clients choose how much verification they need. A casual lookup may use one public indeXer. An application protecting valuable identity can compare several. A fully independent application can run an indeXer beside its own Monero node.
+The recommended verification path is to run an indeXer beside your own Monero node. A public indeXer can be useful for testing or comparison, but it should not become the authority a serious XNS setup depends on.
 
 The `source_txids` response field exists to connect convenient resolution back to the transactions that justify it.
 

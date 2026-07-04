@@ -25,7 +25,7 @@ For `indexer.example.xns`, XNS Resolver looks up `example` and preserves the ful
 
 The configured indeXer reports the current XNS owner key. XNS Resolver validates the response and onion conversion, but it does not independently scan Monero. A dishonest indeXer can lie to its own client.
 
-Users may choose another indeXer, compare several, or run one locally. The XNS claim remains on Monero regardless of which HTTP endpoint is used to read it.
+The recommended setup is to run your own indeXer, preferably beside your own Monero node. Public indeXers are useful for testing and comparison, but they should not be the authority your resolver depends on.
 
 Tor authenticates the onion destination derived from the owner key. If the indeXer returns the correct key, the connection cannot quietly terminate at a different onion identity with a similar name.
 

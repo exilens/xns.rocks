@@ -21,7 +21,7 @@ The service must explicitly accept each Host value it intends to serve.
 
 ## What the visitor trusts
 
-The configured indeXer reports the current XNS owner key. XNS Resolver validates the response and address derivation, but it does not scan Monero itself. Users may choose another indeXer or run one locally.
+The configured indeXer reports the current XNS owner key. XNS Resolver validates the response and address derivation, but it does not scan Monero itself. The recommended setup is to run your own indeXer, preferably beside your own Monero node.
 
 I2P locates the encrypted LeaseSet2 destination belonging to the derived public identity. The changing blinded publication keys do not change the stable owner key or extended address.
 

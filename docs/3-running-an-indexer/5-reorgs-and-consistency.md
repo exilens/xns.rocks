@@ -2,7 +2,7 @@
 
 A Monero reorganization replaces one or more recent blocks with another valid chain. Since XNS chronology comes from Monero, the registry must follow the replacement chain as though the orphaned blocks had never existed.
 
-The indeXer does not try to patch individual names after a reorg. Each scan orders all known protocol transfers and replays the registry from the beginning. This is simple enough to audit and avoids retaining conclusions that were valid only under an earlier chain.
+The indeXer does not try to patch individual names after a reorg. Normal scans start from the durable SQLite boundary and replay transfers above it. If the durable block anchor no longer matches the chain, the stored state is withheld and the registry is rebuilt from protocol wallet transfers. This avoids retaining conclusions that were valid only under an earlier chain.
 
 ## Canonical transaction checks
 
@@ -32,4 +32,4 @@ Transient errors such as a refused connection are not treated as deep reorgs. De
 
 Two indeXers connected to nodes on the same canonical Monero chain and running the same XNS rules should produce the same registry. Their SQLite files, scan times and HTTP availability may differ, but those are local implementation details.
 
-Near the tip, indeXers may briefly disagree because their nodes have different heights or have not yet converged after a reorg. The source transaction IDs and expiration heights make these differences observable. Once both nodes share the same chain and both indeXers complete a scan, their registry state should converge without communicating with each other.
+Near the tip, indeXers may briefly disagree because their nodes have different heights or have not yet converged after a reorg. The source transaction IDs, events and expiration heights make these differences observable. Once both nodes share the same chain and both indeXers complete a scan, their registry state should converge without communicating with each other.

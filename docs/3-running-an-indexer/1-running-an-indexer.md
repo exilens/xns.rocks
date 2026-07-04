@@ -56,18 +56,19 @@ The wallet begins at the protocol restore height rather than genesis. These heig
 
 The HTTP listener starts immediately, but lookups return `503 Service Unavailable` until the first refresh and replay finish. This prevents old disk state from being served as though it were current.
 
-The first startup may take time because the protocol wallet must scan from its restore height. Later startups reuse the Monero wallet cache, although the indeXer still reloads and replays all protocol transfers before becoming ready.
+The first startup may take time because the protocol wallet must scan from its restore height. Later startups reuse the Monero wallet cache and normally continue from the durable SQLite state.
 
 Progress is written to standard error:
 
 ```text
-scan: starting
-scan: refreshing protocol wallet
-scan: loading wallet transfers
-scan: found 12 incoming transfers
-scan: ordering transfers
-scan: replaying transfers
-scan: done in 4s, visible_names=3 durable_names=3
+scan: done in 0s, durable height 3710000, 7 active names
+```
+
+If the durable state is missing, stale or from an older derived-state version, the indeXer rebuilds the SQLite registry from protocol wallet transfers:
+
+```text
+scan: state version changed, rebuilding full state
+scan: done in 4s, rebuilt durable state at height 3710000 with 7 names
 ```
 
 The scan repeats every 30 seconds. If one scan is still running when the next interval arrives, the new scan is skipped instead of running concurrently.
@@ -80,4 +81,4 @@ The node must provide ordinary daemon RPC methods including block lookup, transa
 
 For a public service, operating a local synchronized Monero node gives the indeXer the clearest trust and availability boundary. A remote node can delay, omit or misrepresent chain data to that indeXer, although it cannot create a claim that honest Monero nodes do not accept.
 
-Continue with the [lookup API](/docs/running-an-indexer/lookup-api) to place applications in front of the daemon.
+Continue with the [indeXer API](/docs/running-an-indexer/indexer-api) to place applications in front of the daemon.

@@ -34,7 +34,7 @@ XNS does not refund protocol mistakes. Before claiming or renewing, resolve the 
 
 ## After expiration
 
-An expired entry is no longer returned as found by the lookup API. The next valid claim becomes a new ownership period regardless of whether it uses the old owner key or a different one.
+An expired entry is no longer returned as found by the indeXer API. The next valid claim becomes a new ownership period regardless of whether it uses the old owner key or a different one.
 
 The new expiration is calculated from the new claim's block height. Its `first_claim_height` and `source_txids` begin again, because it is a new active ownership rather than a continuation of the expired one.
 

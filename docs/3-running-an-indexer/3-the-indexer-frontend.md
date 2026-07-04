@@ -86,4 +86,4 @@ The reverse proxy should provide TLS and forward requests to the frontend. The X
 
 The frontend has no administration endpoint, database or claim capability. Restarting or replacing it cannot change XNS state. It is a disposable view over one configured indeXer.
 
-That final point is also its trust boundary. The frontend shows whatever its configured indeXer reports. Operators should identify which indeXer they use, and users who need independent verification should compare another indeXer or run their own.
+That final point is also its trust boundary. The frontend shows whatever its configured indeXer reports. The recommended deployment is to run the frontend beside an indeXer you operate yourself.
